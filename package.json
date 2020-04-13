@@ -1,7 +1,7 @@
 {
-  "name": "ramen-joy",
+  "name": "react-todo",
   "version": "1.0.0",
-  "description": "Ramen lover's paradise.",
+  "description": "MERN to-do application.",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
