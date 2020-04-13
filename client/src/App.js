@@ -4,9 +4,7 @@ import axios from "axios";
 import Todo from "./components/Todo"; 
 
 function App() {
-  const [ todos, setTodos ] = useState([
-  ]); 
-  const [ value, setValue ] = useState(""); 
+  const [ todos, setTodos ] = useState([]); 
   const todoInput = useRef(); 
 
 
