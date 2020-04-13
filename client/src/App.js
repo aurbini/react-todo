@@ -15,40 +15,35 @@ function App() {
   },[])
   
   const handleDelete = async (id) => {
-    // console.log(id); 
-    const res = await axios.delete('/api/todoList/' + id); 
+    const res = await axios.delete('/api/todos/' + id); 
     fetchData(); 
   }
   
   const fetchData = async () => {
-    const { data } = await axios.get('/api/todoList')
+    const { data } = await axios.get('/api/todos/')
     console.log(data);
     setTodos(data);
   }
 
   const updateTodo = async (id) => {
-    const { data } = await axios.put('/api/todoList', { id } );
+    const { data } = await axios.put(`/api/todos/${id}` );
     fetchData(); 
   }
 
   const renderTodos = () => {
-    // console.log(todos); 
     return todos.map(todo => {
-      return <Todo name={todo.name} complete={todo.complete} updateTodo={updateTodo} handleDelete={handleDelete} id={todo._id} />
+      return <Todo description={todo.description} complete={todo.complete} updateTodo={updateTodo} handleDelete={handleDelete} id={todo._id} />
     })
   }
 
   function handleFormSubmit(event){
     event.preventDefault();
-    const body = {
-      name: todoInput.current.value
+    const todo = {
+      description: todoInput.current.value
     }
-    // console.log(event); 
-    axios.post("/api/todoList", body).then(res =>{
-      const updatedTodos= [...todos, res.data]; 
-      // console.log(updatedTodos)
-      setTodos(updatedTodos); 
-    })
+    axios.post("/api/todos/", todo)
+      .then(res =>fetchData())
+      .catch(err=> console.log(err))
     todoInput.current.value = "";  
   }
   
