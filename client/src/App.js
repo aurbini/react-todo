@@ -1,63 +1,25 @@
-import React, {useState, useEffect, useRef} from 'react';
-import './App.css';
-import axios from "axios"; 
-import Todo from "./components/Todo"; 
+import React from 'react';
+import Todos from "./components/Todos"; 
+import Header from "./components/Header"
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Modal from './components/Modal'
+import { Container } from 'reactstrap'
+
+import { Provider } from 'react-redux'
+import store from './store'
+
 
 function App() {
-  const [ todos, setTodos ] = useState([]); 
-  const todoInput = useRef(); 
 
-
-  useEffect(() => {
-    fetchData()
-  },[])
-  
-  const handleDelete = async (id) => {
-    const res = await axios.delete('/api/todos/' + id); 
-    fetchData(); 
-  }
-  
-  const fetchData = async () => {
-    const { data } = await axios.get('/api/todos/')
-    console.log(data);
-    setTodos(data);
-  }
-
-  const updateTodo = async (id) => {
-    const { data } = await axios.put(`/api/todos/${id}` );
-    fetchData(); 
-  }
-
-  const renderTodos = () => {
-    return todos.map(todo => {
-      return <Todo description={todo.description} complete={todo.complete} updateTodo={updateTodo} handleDelete={handleDelete} id={todo._id} />
-    })
-  }
-
-  function handleFormSubmit(event){
-    event.preventDefault();
-    const todo = {
-      description: todoInput.current.value
-    }
-    axios.post("/api/todos/", todo)
-      .then(res =>fetchData())
-      .catch(err=> console.log(err))
-    todoInput.current.value = "";  
-  }
   
   return (
-    <div className="App app">
-      <h1>To do List</h1>
-      <form onSubmit={handleFormSubmit}>
-        <input 
-          ref={todoInput} 
-          placeholder="enter todo"
-          ></input>
-      </form>
-      <ul className="todo-list">
-        { todos.length > 0 ? renderTodos() : "no todos"}
-      </ul>
-    </div>
+    <Provider store={store}>
+      <Header />
+      <Container >
+        <Modal style={{marginTop: '10rem'}}/> 
+        <Todos />
+      </Container> 
+    </Provider>
   );
 }
 
