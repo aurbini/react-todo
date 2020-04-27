@@ -1,35 +1,24 @@
 import * as ACTION_TYPES from '../actions/types'
-import {v1 as uuid} from 'uuid'
 
 
-
-const initialState = {
-  todos: [
-    {id: uuid(), title: "bacon"}, 
-    {id: uuid(), title: "egg"}, 
-    {id: uuid(), title: "cheese"}, 
-  ]
-}
-
-export default function(state = initialState, action){
+export default function(state, action){
   switch(action.type) {
     case ACTION_TYPES.GET_TODOS: 
+      console.log(action.payload)
       return {
-        ...state
+        todos: [...action.payload ]
       }
     case ACTION_TYPES.ADD_TODO: 
       return {
         todos: [
-          ...state.todos, {
-            id: uuid(), 
-            title: action.payload
-          }
+          ...state.todos,  
+          action.payload
         ]
       }
     case ACTION_TYPES.DELETE_TODO:
       return {
         todos: 
-          state.todos.filter(todo=> todo.id !== action.payload)
+          state.todos.filter(todo=> todo._id !== action.payload)
       }
     default: 
       return {
