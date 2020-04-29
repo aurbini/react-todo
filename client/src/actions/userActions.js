@@ -4,7 +4,8 @@ import {
   REGISTER_SUCCESS,
   AUTH_ERROR,
   REGISTER_FAIL,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT_SUCCESS
 } from './types'
 import axios from 'axios';
 import { returnErrors} from './errorAction'
@@ -26,7 +27,6 @@ export const loadUser = () => (dispatch, getState) => {
 }
 
 export const login = (user) =>  dispatch => {
-  console.log(user)
   axios.post('/api/user/login', user)
     .then(res => {
       console.log(res)
@@ -57,6 +57,11 @@ export const register = (user) => dispatch => {
   })
 }
 
+export const logout = () => {
+  return({
+    type: LOGOUT_SUCCESS
+  })
+}
 
 export const tokenConfig = getState => {
    //Get token from localStorage
@@ -72,3 +77,4 @@ export const tokenConfig = getState => {
    }
    return config
 }
+

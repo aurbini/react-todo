@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, getTodos } from "../actions/todoActions";
-
-import { Container, ListGroup, ListGroupItem, 
-        Button, Row, Col } from 'reactstrap'
+import { Container, ListGroup, 
+         ListGroupItem, Button,
+          Row, Col } 
+  from 'reactstrap'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const ShoppingList = (props) => {
 
   const dispatch = useDispatch()
-  
+  let todos = useSelector(state => state.todo.todos)
+
+
   useEffect(()=>{
     dispatch(getTodos())
   },[])
 
-  let todos = useSelector(state => state.todo.todos)
+
   return ( 
     <Container style={{marginTop: '3rem'}}>
        <ListGroup mt="10"> 

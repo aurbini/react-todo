@@ -1,16 +1,18 @@
 import React, { useState} from 'react';
 import { Form, FormGroup, Input, Button, Label } from 'reactstrap'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions/userActions'
-
+import { Route } from 'react-router-dom'
+import { Todos } from './Todos'
 
 const Login = () => {
 
+  const dispatch = useDispatch()
   const [ loginInfo, setLoginInfo ] = useState({
     email: '', 
     password: ''
   })
-  const dispatch = useDispatch()
+  const isLoggedIn = useSelector(state => state.user.isAuthenticated)
 
   return (
     <Form 
