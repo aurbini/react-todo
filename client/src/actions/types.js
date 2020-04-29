@@ -1,5 +1,14 @@
 export const DELETE_TODO = "DELETE_TODO"
-
 export const ADD_TODO = "ADD_TODO"
-
 export const GET_TODOS = "GET_TODOS"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const LOGIN_FAIL = "LOGIN_FAIL"
+export const AUTH_ERROR = "AUTH_ERROR"
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS"
+export const REGISTER_FAIL = "REGISTER_FAIL"
+export const REGISTER_SUCCESS = "REGISTER_SUCCES"
+export const GET_ERRORS = "GET_ERRORS"
+export const CLEAR_ERRORS = "CLEAR_ERROR"
+export const USER_LOADED = "USER_LOADED"
+export const LOAD_USER = "LOAD_USER"
+

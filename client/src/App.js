@@ -1,24 +1,19 @@
-import React from 'react';
-import Todos from "./components/Todos"; 
-import Header from "./components/Header"
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Modal from './components/Modal'
-import { Container } from 'reactstrap'
-
+import Routes from './routes'
 import { Provider } from 'react-redux'
 import store from './store'
-
+import { loadUser } from './actions/userActions'
 
 function App() {
 
-  
+  useEffect(()=>
+    store.dispatch(loadUser())
+  ,[])
+
   return (
     <Provider store={store}>
-      <Header />
-      <Container >
-        <Modal style={{marginTop: '10rem'}}/> 
-        <Todos />
-      </Container> 
+      <Routes />
     </Provider>
   );
 }

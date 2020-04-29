@@ -4,7 +4,6 @@ import * as ACTION_TYPES from '../actions/types'
 export default function(state, action){
   switch(action.type) {
     case ACTION_TYPES.GET_TODOS: 
-      console.log(action.payload)
       return {
         todos: [...action.payload ]
       }

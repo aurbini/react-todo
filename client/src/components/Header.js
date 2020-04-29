@@ -24,8 +24,11 @@ const Header = () => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
+            <NavItem>
+                <NavLink href="/todos">To-Dos</NavLink>
+              </NavItem>
               <NavItem>
-                <NavLink href="https://github.com">Github</NavLink>
+                <NavLink href="/login">Login</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
