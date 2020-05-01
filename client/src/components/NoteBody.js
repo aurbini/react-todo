@@ -1,6 +1,6 @@
-import React, { useEffect, Fragment } from 'react';
+import React from 'react';
 import { useSelector } from "react-redux";
-import {  Card, CardBody, CardTitle, CardText, Button } 
+import {  Card, CardBody, Col, CardText, Button, Row } 
   from 'reactstrap'
 import { useParams } from 'react-router-dom'
 import { Route, Link } from 'react-router-dom'
@@ -12,30 +12,35 @@ const NoteTitle = () => {
   const note = useSelector(state => state.notes)
     .filter(({_id}) => _id == note_ID)
 
-  // useEffect(()=>{
-  //   dispatch(getTodo(note_ID))
-  // },[])
   const noteBody = note[0].note
-
+  
   return ( 
-    <Fragment>
+    <Col sm="6">
+      <h3 style={{marginLeft: '3rem'}}>Note</h3>
       <Card>
-        <CardBody>       
-          <CardText>
-            {noteBody}
-          </CardText>
-          <Link>
-            <Button
-              tag={Link}
-              to={`/todos/${userId}`}
-              style={{marginBottom: '2rem'}}
-              >Close Note
-            </Button>
-          </Link>
+        <CardBody>
+          <Row>
+            <Col xs="4" sm="8">
+              <CardText>
+                {noteBody}
+              </CardText>
+            </Col>
+            <Col sm="4">
+              <Link>
+              <Button
+                tag={Link}
+                to={`/todos/${userId}`}
+                style={{marginBottom: '2rem'}}
+                >Close Note
+              </Button>
+            </Link>
+            </Col>
+         
+          </Row>
           </CardBody>
         </Card>
       <Route exact path={`/todos/${userId}`} />
-      </Fragment>
+      </Col>
    );
 }
  

@@ -63,6 +63,7 @@ const ModalOne = () => {
               </Input>
               <Label>Password</Label>
               <Input
+                type="password"
                 id="useContext"
                 onChange={(e)=> setUser({
                   ...user, 

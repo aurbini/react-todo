@@ -9,8 +9,4 @@ router.route('/:_id')
   .put(todoController.update)
   .delete(todoController.remove)
 
-// router.route('/findNote/:note_ID')
-  // .get(todoController.findNote)  
-// router.route('/:_id/:noteID')
-//   .get(todoController.findNote)
 module.exports = router

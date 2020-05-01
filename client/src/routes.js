@@ -39,9 +39,9 @@ const Routes = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        {/* <Route exact path="/login" component={Login} /> */}
         <PublicOnlyRoutes path="/login" component={Login} /> 
         <PrivateRoute path={`/todos/${id}`} component={Todo} />
+        <Route component={Home} />
       </Switch>
     </Router>
     );

@@ -37,6 +37,7 @@ const Login = () => {
           })}></Input>
         <Label>Password</Label>
         <Input 
+          type="password"
           onChange={(e)=>setLoginInfo({
             ...loginInfo, 
             password: e.target.value

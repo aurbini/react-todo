@@ -25,10 +25,7 @@ export default function(state = initialState, action){
           action.payload
       ]
     case ACTION_TYPES.DELETE_TODO:
-      return {
-        todos: 
-          state.todos.filter(todo=> todo._id !== action.payload)
-      }
+      return state.filter(note=> note._id !== action.payload)
     default: 
       return {
         ...state,

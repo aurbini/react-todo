@@ -19,16 +19,10 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }, 
-  remove: function(req, res){
-    const _id = req.params
-    const noteId = req.headers.data
-    db.User
-      .findByIdAndUpdate(
-        _id, 
-        { $pull: { 'notes': {  _id: noteId } } })
-      .then(dbModel => {
-        console.log(dbModel)
-        res.json(dbModel)}) 
+  remove: function({ params: { _id }}, res){
+    db.Todo
+      .deleteOne({_id}) 
+      .then(dbModel => res.json(dbModel)) 
       .catch(err => res.status(422).json(err));
   },
   findNotesByAuthor: function({ params: { _id}}, res){

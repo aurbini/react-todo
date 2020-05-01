@@ -12,11 +12,8 @@ export const getTodos = (id) => dispatch => {
 }
 
 export const addTodo = (todo) => dispatch => {
-  const body = {
-    description: todo
-  }
-  console.log(body)
-  axios.post('/api/todos/', body)
+  console.log(todo)
+  axios.post('/api/todos/create', todo)
     .then(res=> 
       dispatch({
         type: ACTION_TYPES.ADD_TODO,
@@ -27,7 +24,7 @@ export const addTodo = (todo) => dispatch => {
 
 export const deleteTodo = (_id) => dispatch => {
   console.log(_id)
-  axios.delete(`api/todos/${_id}`)
+  axios.delete(`/api/todos/${_id}`)
     .then(res => 
       dispatch({
         type:ACTION_TYPES.DELETE_TODO,
