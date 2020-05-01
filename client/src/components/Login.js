@@ -1,9 +1,7 @@
-import React, { useState} from 'react';
-import { Form, FormGroup, Input, Button, Label } from 'reactstrap'
+import React, { useState } from 'react';
+import { Form, FormGroup, Input, Button, Label, Alert } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions/userActions'
-import { Route } from 'react-router-dom'
-import { Todos } from './Todos'
 
 const Login = () => {
 
@@ -12,7 +10,12 @@ const Login = () => {
     email: '', 
     password: ''
   })
-  const isLoggedIn = useSelector(state => state.user.isAuthenticated)
+  
+  const loginError = useSelector(state => state.error.id)
+
+  const alertError = () => 
+    <Alert color="warning">Login Failed, please try again.</Alert>
+  
 
   return (
     <Form 
@@ -20,7 +23,11 @@ const Login = () => {
         e.preventDefault()
         dispatch(login(loginInfo))
       }}
-      style={{padding: '2rem'}}>
+      style={{padding: '2rem'}}
+    >
+    {loginError === "LOGIN_FAIL" 
+      ?alertError() 
+      : null}
       <FormGroup>
         <Label>Email</Label>
         <Input

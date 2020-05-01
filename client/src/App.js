@@ -4,6 +4,9 @@ import Routes from './routes'
 import { Provider } from 'react-redux'
 import store from './store'
 import { loadUser } from './actions/userActions'
+import './app.css'
+
+
 
 function App() {
 

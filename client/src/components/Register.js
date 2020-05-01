@@ -19,22 +19,18 @@ const ModalOne = () => {
   const dispatch = useDispatch()
   const globalState = {
     isAuthenticated: useSelector(state => state.user.isAuthenticated),
-    error: useSelector(state => state.error)
+    error: useSelector(state => state.error.id)
   }
+  const errorMessage = useSelector(state => state.error.msg.msg)
 
-  // useEffect(()=>{
-  //   console.log(loginErrorMessage)
-  // //   if(loginErrorMessage.current){
-  // //     setUser({
-  // //       ...user,
-  // //       msg: globalState.state.error
-  // //     })
-  // //   }else loginErrorMessage.current = true
-  //   })
-
+  const alertError = () => 
+    <Alert color="warning">{ errorMessage }</Alert>
+  
   return (
     <div>
-      {/* {globalState.error.state.msg.msg ? <Alert color="danger"> user </Alert> : null} */}
+      { globalState.error === "REGISTER_FAIL"
+        ? alertError() 
+        : null }
       <Button color="primary" onClick={toggle}>Register </Button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Enter YOUR INFORMATION</ModalHeader>

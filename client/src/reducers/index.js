@@ -5,7 +5,7 @@ import errorReducer from './errorReducer'
 
 
 export default combineReducers({
-  todo: todoReducer,
+  notes: todoReducer,
   user: userReducer,
   error: errorReducer
 })

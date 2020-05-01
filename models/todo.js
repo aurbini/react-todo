@@ -2,13 +2,17 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const TodoSchema = new Schema({
-  description: {
+  title: {
     type: 'string',
     required: true
   },
-  complete: {
-    type: 'boolean',
-    default: false
+  note: {
+    type: 'string',
+    default: true
+  },
+  authorID: {
+    type: 'string',
+    required: true
   }
 })
 

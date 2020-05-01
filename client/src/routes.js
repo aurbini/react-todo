@@ -7,10 +7,9 @@ import Todo from './pages/Todo'
 import { useSelector } from "react-redux";
 
 
-
 const PrivateRoute = ({component: Component, ...rest}) => {
 
-  let isLoggedIn = useSelector(state => state.user)
+  let isLoggedIn = useSelector(state => state.user.isAuthenticated)
   console.log(isLoggedIn)
   return (
     <Route {...rest} render={(props) => (
@@ -21,16 +20,28 @@ const PrivateRoute = ({component: Component, ...rest}) => {
   )
 }
 
+const PublicOnlyRoutes = ({component: Component, ...rest}) => {
+  let isLoggedIn = useSelector(state => state.user.isAuthenticated)
+  const id = useSelector(state => state.user._id)
+  return (
+    <Route {...rest} render={(props) => (
+      !isLoggedIn 
+      ? <Component {...props} /> 
+      : <Redirect to={`/todos/${id}`} />
+    )} />
+  )
+}
 
 const Routes = () => {
-
+  let id = useSelector(state => state.user._id)
   return ( 
     <Router>
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <PrivateRoute path='/todos' component={Todo} />
+        {/* <Route exact path="/login" component={Login} /> */}
+        <PublicOnlyRoutes path="/login" component={Login} /> 
+        <PrivateRoute path={`/todos/${id}`} component={Todo} />
       </Switch>
     </Router>
     );

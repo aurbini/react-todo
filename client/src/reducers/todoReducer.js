@@ -1,19 +1,29 @@
 import * as ACTION_TYPES from '../actions/types'
 
 
-export default function(state, action){
+const initialState = [
+  {
+    id: null,
+    title: null, 
+    note: null
+  }
+]
+
+export default function(state = initialState, action){
   switch(action.type) {
     case ACTION_TYPES.GET_TODOS: 
-      return {
-        todos: [...action.payload ]
-      }
+      return [
+        ...action.payload
+      ]
+      case ACTION_TYPES.GET_TODO: 
+      return [
+        action.payload
+      ]
     case ACTION_TYPES.ADD_TODO: 
-      return {
-        todos: [
-          ...state.todos,  
+      return [
+          ...state,
           action.payload
-        ]
-      }
+      ]
     case ACTION_TYPES.DELETE_TODO:
       return {
         todos: 

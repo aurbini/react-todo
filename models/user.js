@@ -13,7 +13,11 @@ const UserSchema = new Schema({
   password: {
     type: String, 
     required: true
-  }
+  },
+  notes: [{
+    title: {type: String},
+    note: {type: String}
+  }]
 })
 
 const User = mongoose.model('User', UserSchema)

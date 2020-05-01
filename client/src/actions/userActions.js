@@ -5,7 +5,8 @@ import {
   AUTH_ERROR,
   REGISTER_FAIL,
   LOGIN_FAIL,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
+  CLEAR_ERRORS
 } from './types'
 import axios from 'axios';
 import { returnErrors} from './errorAction'
@@ -14,10 +15,15 @@ import { returnErrors} from './errorAction'
 export const loadUser = () => (dispatch, getState) => {
 
   axios.get('/api/user/auth', tokenConfig(getState))
-    .then(res =>  dispatch({
+    .then(res => {
+    dispatch({
       type: USER_LOADED,
-      payload: res.data
-    }))
+      payload: res.data._doc
+    })
+    dispatch({
+      type: CLEAR_ERRORS
+      })
+    })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status))
       dispatch({
@@ -29,13 +35,12 @@ export const loadUser = () => (dispatch, getState) => {
 export const login = (user) =>  dispatch => {
   axios.post('/api/user/login', user)
     .then(res => {
-      console.log(res)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data 
     })})
     .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status))
+      dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'))
       dispatch({
         type: LOGIN_FAIL
       })
@@ -44,13 +49,17 @@ export const login = (user) =>  dispatch => {
 
 export const register = (user) => dispatch => {
   axios.post('/api/user/register', user)
-    .then(res => 
+    .then(res => {
       dispatch({
           type: REGISTER_SUCCESS,
           payload: res.data
-      }))
+      })
+      dispatch({
+        type: CLEAR_ERRORS,
+    })})
     .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status))
+      console.log(err.response)
+      dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'))
       dispatch({
         type: REGISTER_FAIL
       })

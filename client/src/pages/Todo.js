@@ -1,13 +1,18 @@
 import React, { Fragment } from 'react';
 import Modal from '../components/Modal'
-import Todos from '../components/Todos'
-import { Container } from 'reactstrap'
+import NoteTitle from '../components/NoteTitle'
+import NoteBody from '../components/NoteBody'
+import { Container, Row, Col } from 'reactstrap'
 
 const Home = () => {
   return (
     <Container>
       <Modal />
-      <Todos />
+      <Row className='mt-5'>
+        <Col sm="6">
+          <NoteTitle />
+        </Col>
+      </Row>
     </Container>
     );
 }
