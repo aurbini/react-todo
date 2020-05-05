@@ -5,8 +5,8 @@ import {  Card, CardBody, Col, CardText, Button, Row, CardTitle }
 import { useParams } from 'react-router-dom'
 import { Route, Link } from 'react-router-dom'
 
-const NoteTitle = () => {
-
+const NoteTitle = ({ notes }) => {
+  console.log(notes)
   const { note_ID } = useParams()
   const userId = useSelector(state => state.user._id)
   const note = useSelector(state => state.notes)

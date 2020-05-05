@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   isAuthenticated: false, 
-  user: null, 
+  selectedNote: null, 
   token: localStorage.getItem('token')
 }
 

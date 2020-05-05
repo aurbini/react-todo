@@ -15,10 +15,14 @@ const NoteTitle = () => {
   const dispatch = useDispatch()
   const userId = useSelector(state => state.user._id)
   const notes = useSelector(state => state.notes)
-
+  console.log(notes)
   useEffect(()=>{
     dispatch(getTodos(userId))
   },[])
+
+  const logDisplay = () => {
+    console.log('display hit')
+  }
 
   return ( 
     <Fragment> 
@@ -68,7 +72,7 @@ const NoteTitle = () => {
       if(notes.length > 0) return <h3>Please select a note</h3>} 
       }/>
      <Route path={`/todos/${userId}/:note_ID`} render={() => {
-       if(notes) return <NoteBody /> 
+       if(notes[0]._id) return <NoteBody notes={notes} /> 
        return <Home /> 
      }
      }/> 

@@ -10,21 +10,28 @@ import {
 } from './types'
 import axios from 'axios';
 import { returnErrors} from './errorAction'
+import * as ACTION_TYPES from './types'
 
 
 export const loadUser = () => (dispatch, getState) => {
 
   axios.get('/api/user/auth', tokenConfig(getState))
     .then(res => {
+      console.log(res)
     dispatch({
       type: USER_LOADED,
       payload: res.data._doc
+    })
+    dispatch({
+      type: ACTION_TYPES.GET_TODOS,
+      payload: res.data._doc._id
     })
     dispatch({
       type: CLEAR_ERRORS
       })
     })
     .catch(err => {
+      console.log(err)
       dispatch(returnErrors(err.response.data, err.response.status))
       dispatch({
         type: AUTH_ERROR
@@ -76,6 +83,7 @@ export const tokenConfig = getState => {
    //Get token from localStorage
    const token = getState().user.token
    //Headers
+   console.log(token)
    const config = {
      headers: {
        "Content": "application/json"
