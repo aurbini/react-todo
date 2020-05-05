@@ -23,12 +23,11 @@ const Login = () => {
         e.preventDefault()
         dispatch(login(loginInfo))
       }}
-      style={{padding: '2rem'}}
     >
     {loginError === "LOGIN_FAIL" 
       ?alertError() 
       : null}
-      <FormGroup>
+      <FormGroup >
         <Label>Email</Label>
         <Input
           onChange={(e)=>setLoginInfo({
@@ -42,8 +41,8 @@ const Login = () => {
             ...loginInfo, 
             password: e.target.value
           })}></Input>
-        <Button style={{marginTop: '2rem'}}>Submit</Button>
       </FormGroup>
+      <Button style={{marginTop: '2rem', width: '100%'}}>Submit</Button>
     </Form>
     );
 }

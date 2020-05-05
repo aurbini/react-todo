@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from "react-redux";
-import {  Card, CardBody, Col, CardText, Button, Row } 
+import {  Card, CardBody, Col, CardText, Button, Row, CardTitle } 
   from 'reactstrap'
 import { useParams } from 'react-router-dom'
 import { Route, Link } from 'react-router-dom'
@@ -16,31 +16,31 @@ const NoteTitle = () => {
   
   return ( 
     <Col sm="6">
-      <h3 style={{marginLeft: '3rem'}}>Note</h3>
-      <Card>
-        <CardBody>
-          <Row>
-            <Col xs="4" sm="8">
-              <CardText>
-                {noteBody}
-              </CardText>
-            </Col>
-            <Col sm="4">
-              <Link>
-              <Button
-                tag={Link}
-                to={`/todos/${userId}`}
-                style={{marginBottom: '2rem'}}
-                >Close Note
-              </Button>
-            </Link>
-            </Col>
-         
-          </Row>
-          </CardBody>
-        </Card>
+      <Card 
+        body 
+        inverse style={{ 
+          backgroundColor: '#333', 
+          borderColor: '#333',
+          minHeight:'300px' }}
+        className="text-center">
+        <CardTitle
+          style={{fontSize: '2rem'}}> Note </CardTitle>
+        <CardText
+          xs={5}
+          style={{fontSize: '1.3rem'}}>
+          {noteBody}
+        </CardText>
+        <Link>
+          <Button
+            tag={Link}
+            to={`/todos/${userId}`}
+            style={{marginBottom: '2rem'}}
+            >Close Note
+          </Button>
+        </Link>
+      </Card>
       <Route exact path={`/todos/${userId}`} />
-      </Col>
+    </Col>
    );
 }
  

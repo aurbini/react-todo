@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, Fragment, useRef } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form,
         FormGroup, Input, Label, Alert } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux'
@@ -27,11 +27,13 @@ const ModalOne = () => {
     <Alert color="warning">{ errorMessage }</Alert>
   
   return (
-    <div>
+    <Fragment >
       { globalState.error === "REGISTER_FAIL"
         ? alertError() 
         : null }
-      <Button color="primary" onClick={toggle}>Register </Button>
+      <Button color="primary" 
+        style={{marginTop: '2rem'}} 
+        onClick={toggle}>Register </Button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Enter YOUR INFORMATION</ModalHeader>
         <ModalBody>
@@ -76,7 +78,7 @@ const ModalOne = () => {
           </Form>
         </ModalBody>
       </Modal>
-    </div>
+    </Fragment>
   );
 }
 
